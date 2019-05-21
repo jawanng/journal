@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Entries for "{{ name.title() }}"</h1>
+    <div class="entry-list">
+    {% for journal in journals %}
+        <article>
+            <h2><a href="{{ url_for('detail_entry', slug=journal.slug) }}">{{ journal.title }}</a></h2>
+            <div>
+                {% if journal.tags != None %}
+                    {% for tag in journal.tag_list() %}
+                        <a href="{{ url_for('show_tag', name=tag) }}" class="button-secondary">{{ tag }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <time datetime="{{ journal.date }}">{{ journal.date.strftime('%B %d, %Y') }}</time>
+        </article>
+    {% endfor %}
+    </div>
+ {% endblock %}

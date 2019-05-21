@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+
+
+<div class="new-entry">
+    <h1>Registration</h1>
+    <form method='POST' action=''>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.password2) }}
+      <div class="u-full-width">
+        <input type="submit" class="button-primary" value="Register">
+      </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="entry-list single">
+        <article>
+            <h1>{{ journal.title }}</h1>
+            <time datetime="{{ journal.date }}">{{ journal.date.strftime('%B %d, %Y') }}</time>
+            <div class="entry">
+                <h3>Time Spent: </h3>
+                <p>{{ journal.time_spent }} Hours</p>
+            </div>
+            <div class="entry">
+                <h3>What I Learned:</h3>
+                <p>{{ journal.learned_info }}</p>
+            </div>
+            <div class="entry">
+                <h3>Resources to Remember:</h3>
+                <ul>
+                    {% for item in journal.resources.split('\n') %}
+                        <li>{{ item }}</li>
+                    {%  endfor %}
+                </ul>
+            </div>
+            <div>
+                {% if journal.tags != None %}
+                    {% for tag in journal.tag_list() %}
+                        <a href="{{ url_for('show_tag', name=tag) }}" class="button-secondary">{{ tag }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </article>
+    </div>
+{% endblock %}
