@@ -108,7 +108,7 @@ def delete_entry(slug):
     """Deletes an journal entry and redirect to /index"""
     try:
         result = models.Journal.get(slug=slug)
-        result.delete()
+        result.delete_instance()
     except models.DoesNotExist:
         abort(404)
     return redirect(url_for('index'))
@@ -170,5 +170,4 @@ def show_tag(name):
 
 if __name__ == '__main__':
     app.run()
-
 
