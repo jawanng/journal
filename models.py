@@ -47,6 +47,9 @@ class Journal(BaseModel):
     def tag_list(self):
         return [x.strip() for x in self.tags.lower().split(',')]
 
+    def __str__(self):
+        return self.slug
+
 
 def initialize():
     DATABASE.connect()
